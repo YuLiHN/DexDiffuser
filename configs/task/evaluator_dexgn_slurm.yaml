@@ -1,0 +1,26 @@
+name: evaluator
+lr: 1e-4
+
+pos_enc_multires: [10,4,-1]
+
+train:
+  batch_size: 32768
+#  num_workers: 4
+  num_workers: 0
+  num_epochs: 100
+  log_step: 100
+
+dataset:
+  name: DexGraspNetEvaluatorDataset
+  robot_name: allegro_right
+  data_file: evaluator_train.pt
+  normalize_x: true
+  normalize_x_trans: false
+  urdf_root: ./data/urdf
+  object_root: /proj/berzelius-2023-338/users/x_haolu/dexdiffuser_data
+  data_root: /proj/berzelius-2023-338/users/x_haolu/dexdiffuser_data
+
+visualizer:
+  visualize: false
+
+

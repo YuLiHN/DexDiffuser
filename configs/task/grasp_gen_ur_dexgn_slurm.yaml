@@ -1,0 +1,52 @@
+# task: pose generation
+name: grasp_gen_ur
+lr: 1e-4
+eval_interval: 1
+eval_visualize: 1
+
+train:
+# batch_size: 8192
+  batch_size: 16384
+#  num_workers: 4
+  num_workers: 0
+  num_epochs: 200
+  log_step: 100
+
+test:
+  epoch: null
+  batch_size: 1
+  num_workers: 0
+
+dataset:
+  name: DexGraspNetSamplerAllegro
+  normalize_x: true
+  normalize_x_trans: false
+  desc: '[MultiDex ShadowHand] -- dataset used for grasp pose generation condition on 3D object'
+  modeling_keys: ['allDoFs']
+  num_points: 2048
+  frame_interval_train: 5
+  frame_interval_test: 10
+  device: cuda
+  use_color: false
+  use_normal: false
+  is_downsample: true
+  robot_name: allegro_right
+  # urdf_root: ./data/urdf
+  # object_root: ./data/object
+  # data_root: ./MultiDex
+  urdf_root: ./data/urdf
+  object_root: /proj/berzelius-2023-338/users/x_haolu/dexdiffuser_data
+  data_root: /proj/berzelius-2023-338/users/x_haolu/dexdiffuser_data
+
+  train_transforms: ['NumpyToTensor']
+  test_transforms: ['NumpyToTensor']
+  transform_cfg: {}
+
+visualizer:
+  name: GraspGenURVisualizer
+  ksample: 1 # sample k case in each case
+  vis_denoising: false # visualize denoising process
+  save_mesh: false
+  ## visualization config used in training
+  visualize: false
+  interval: 20

@@ -1,0 +1,24 @@
+name: UNetModel
+
+d_x: 25 
+d_model: 512
+time_embed_mult: 2
+nblocks: 4
+resblock_dropout: 0.0
+transformer_num_heads: 8
+transformer_dim_head: 64
+transformer_dropout: 0.1
+transformer_depth: 1
+transformer_mult_ff: 2
+context_dim: 512
+use_position_embedding: false 
+
+scene_model:
+  name: obj_bps
+  use_color: ${task.dataset.use_color}
+  use_normal: ${task.dataset.use_normal}
+  num_points: ${task.dataset.num_points}
+  num_tokens: 8
+  pretrained_weights: null
+  pretrained_weights_slurm: null
+freeze_scene_model: false

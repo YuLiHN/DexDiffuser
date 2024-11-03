@@ -1,0 +1,28 @@
+## config/sample_pn2.yaml
+hydra:
+  run:
+    dir: .
+  output_subdir: null
+
+defaults:
+  - _self_
+  - diffuser: null
+  - model: null
+  - task: null
+
+dataset_name: multidex # ['multidex', 'dexgraspnet', 'egad']
+data_root: /proj/berzelius-2023-338/users/x_haolu/dexdiffuser_data
+
+sampler_bps_ckpt_pth: /home/x_haolu/dexclutter/dexdiff_clean/ckpts/bps_sampler/model_200.pth
+sampler_pn2_ckpt_pth: pass
+evaluator_ckpt_pth: /home/x_haolu/dexclutter/dexdiff_clean/ckpts/10_4_0_evaluator/model_20.pth
+
+eval_dir: outputs
+exp_name: null
+exp_dir: ${exp_name}
+guid_scale: null #[null, 1]
+
+cam_views: [0,1,2,3,4,5,6,7,8,9]
+num_sample: 20
+slurm: false
+gpu: 0
